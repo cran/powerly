@@ -1,11 +1,102 @@
+# `powerly` `1.7.1`
+
+## Improvements
+
+* Update moved URL https://codecov.io/gh/mihaiconstantin/powerly to
+  https://app.codecov.io/gh/mihaiconstantin/powerly based on comments of CRAN
+  maintainer Uwe Ligges.
+
+# `powerly` `1.7.0`
+
+## Features
+
+* Add `summary` S3 method support for `Validation` class objects.
+
+## Improvements
+
+* Add new `R` version to the CI pipeline for the `R CMD check` job.
+
+* Update `R CMD check` workflow to use `check` action from `r-lib/actions`.
+
+* Add explicit `.data` and `.env` pronoun calls (i.e., from the `rlang` package)
+  to variables used inside data-masking function (e.g., `ggplot2::aes()`) to
+  avoid `CRAN` notes regarding missing bindings for global variables. See this
+  question for more information: https://stackoverflow.com/q/9439256/5252007.
+
+* Update plot functions to respect the signature of the S3 plot generic.
+
+* Improve documentation and positioning of figures in the help pages.
+
+* Create `roxygen2` templates for documenting the public API and S3 methods.
+
+* Extract `plot()` methods from `R6` classes into standalone S3 methods.
+
+* Update package start-up logo with message to welcome and encourage users to
+  submit ideas for improving the package.
+
+* Extend CI workflow to include branch `dev`.
+
+* Fix preprint URL in package documentation.
+
+* Fix heading typo in news file.
+
+## Bug fixes
+
+* Fix backend test where the cluster would contain an unexpected `.Random.seed`.
+  The `.Random.seed` is caused by loading the `bootnet` package which in turn
+  loads the `snow` package. The `snow` package uses the `RNG` within the
+  `.onLoad()` function to draw from the uniform distribution and set a port
+  number. The result of this operation is a `.Random.seed` in the `.GlobalEnv`.
+  For more information see: https://stackoverflow.com/q/69866215/5252007 and
+  https://github.com/SachaEpskamp/bootnet/issues/82.
+
+# `powerly` `1.6.1`
+
+## Improvements
+
+* Update line exclusions for `covr::codecov()`.
+
+# `powerly` `1.6.0`
+
+## Improvements
+
+* Add new `Validation` class plot to `README.md` file.
+
+* Update `GgmModel` tests to vary various model estimation and data generation
+  parameters.
+
+* Update `testthat::expect_equal` to test with a tolerance of `1e-6` for `Basis`
+  and `Solver`.
+
+* Replace own `GgmModel` estimation with `qgraph::EBICglasso()`.
+
+* Add ECDF plot to `Validation` class.
+
+* Import external functions to `NAMESPACE` via `Roxygen2`.
+
+* Add more cool badges to `README.md` (e.g., CRAN version and check status).
+
+* Fix missing missing period in package description in `DESCRIPTION` file.
+
+## Bug fixes
+
+* Fix issue where `GGM` estimation test would fail due to a precision level set
+  too high.
+
+# `powerly` `1.5.2`
+
+## Bug fixes
+
+* Update `Description` field in `DESCRIPTION` file to follow CRAN guidelines.
+
 # `powerly` `1.5.1`
 
 ## Bug fixes
 
-* Updated preprint link in `powerly()` documentation to use the `\doi{}` syntax
+* Update preprint link in `powerly()` documentation to use the `\doi{}` syntax
   as indicated by CRAN member Uwe Ligges.
 
-* Updated `DESCRIPTION` to start with capital letter as indicated by CRAN member
+* Update `DESCRIPTION` to start with capital letter as indicated by CRAN member
   Uwe Ligges.
 
 * Fix typo in `DESCRIPTION`.
@@ -83,7 +174,7 @@
 
 * Restrict tests to using a maximum of two cores to respect CRAN restriction.
 
-# Improvements
+## Improvements
 
 * Hide package logo at startup if the `R` session is not interactive.
 
@@ -144,7 +235,7 @@
 
 * Remove text feedback from each method step function.
 
-# `powerly` `0.1.0`
+# `powerly` `0.1.1`
 
 * Fix bug cased by initial candidate sample size ranges being too narrow.
 
@@ -170,29 +261,23 @@
 
 ---
 
-# Planned changes
+# Planned changes and ideas to consider
 
 - Add tests for `Validation` class.
-- Add implementation for `summary` and `print` methods for the `Method` class.
 - Option to set seeds for the cluster via `parallel::setclusterSetRNGStream`
-- Document the `plot` method in `Method` class.
 - Mechanism for performing replicable simulations using the method.
 - Mechanism for extending the package with new models, measures and statistics.
 - Tutorial for methodologists on how to extend the package.
+- Tutorial to demonstrate how the internal API of the package can be used.
 - Add *UML* class diagram to give an overview of the structure of the package.
 - Add package website using the `pkgdown` generator.
 - Switch to generating `README.md` file from `README.Rmd` via `knitr`.
-- Change to `ggplot2` plots.
-
-# Ideas to consider
-- Bisectional algorithm for choosing an optimal starting range (i.e., not to
-  wide, not to narrow)
+- Bisectional algorithm for choosing an optimal starting range (i.e., not too
+  wide, not too narrow).
 - Switch to accelerated bootstrap CI in `StepThree` for better precision.
 - Reuse Monte Carlo results from previous iterations if they fall within the
   updated range.
 - Shiny application for running the method.
-
-# Known bugs
-- The percentile plot in `StepThree` results in misalignment between the dashed
-  lines intersection point and the percentile function when the number of Monte
-  Carlo replications is very large.
+- Allow rerunning the validation procedure with a custom sample size.
+    - If multiple custom sample sizes are used during the validation, then
+      switch from the histogram to a violin plot.

@@ -1,6 +1,6 @@
 Package: powerly
 Title: Sample Size Analysis for Psychological Networks and More
-Version: 1.5.2
+Version: 1.7.1
 Authors@R: 
     person(given = "Mihai",
            family = "Constantin",
@@ -8,7 +8,7 @@ Authors@R:
            email = "mihai@mihaiconstantin.com",
            comment = c(ORCID = "0000-0002-6460-0107"))
 Description: An implementation of the sample size computation method for network
-    models proposed by Constantin et al. (2021) <doi:10.31234/osf.io/j5v7u>
+    models proposed by Constantin et al. (2021) <doi:10.31234/osf.io/j5v7u>.
     The implementation takes the form of a three-step recursive algorithm
     designed to find an optimal sample size given a model specification and a
     performance measure of interest. It starts with a Monte Carlo simulation
@@ -21,9 +21,9 @@ License: MIT + file LICENSE
 URL: https://github.com/mihaiconstantin/powerly
 BugReports: https://github.com/mihaiconstantin/powerly/issues
 Imports: R6, progress, parallel, splines2, quadprog, osqp, bootnet,
-        qgraph, ggplot2, patchwork
+        qgraph, ggplot2, rlang, patchwork
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Collate: 'Backend.R' 'Basis.R' 'Model.R' 'GgmModel.R' 'Interpolation.R'
         'Spline.R' 'StepThree.R' 'StepTwo.R' 'Statistic.R'
         'PowerStatistic.R' 'StatisticFactory.R' 'ModelFactory.R'
@@ -34,8 +34,8 @@ Collate: 'Backend.R' 'Basis.R' 'Model.R' 'GgmModel.R' 'Interpolation.R'
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2021-09-29 14:12:04 UTC; mihai
+Packaged: 2021-11-08 08:41:58 UTC; mihai
 Author: Mihai Constantin [aut, cre] (<https://orcid.org/0000-0002-6460-0107>)
 Maintainer: Mihai Constantin <mihai@mihaiconstantin.com>
 Repository: CRAN
-Date/Publication: 2021-09-30 09:00:02 UTC
+Date/Publication: 2021-11-08 09:00:02 UTC
