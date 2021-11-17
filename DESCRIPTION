@@ -1,6 +1,6 @@
 Package: powerly
 Title: Sample Size Analysis for Psychological Networks and More
-Version: 1.7.1
+Version: 1.7.2
 Authors@R: 
     person(given = "Mihai",
            family = "Constantin",
@@ -34,8 +34,8 @@ Collate: 'Backend.R' 'Basis.R' 'Model.R' 'GgmModel.R' 'Interpolation.R'
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2021-11-08 08:41:58 UTC; mihai
+Packaged: 2021-11-14 16:57:15 UTC; mihai
 Author: Mihai Constantin [aut, cre] (<https://orcid.org/0000-0002-6460-0107>)
 Maintainer: Mihai Constantin <mihai@mihaiconstantin.com>
 Repository: CRAN
-Date/Publication: 2021-11-08 09:00:02 UTC
+Date/Publication: 2021-11-17 11:50:02 UTC
