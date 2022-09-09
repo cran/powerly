@@ -1,6 +1,6 @@
 Package: powerly
 Title: Sample Size Analysis for Psychological Networks and More
-Version: 1.7.4
+Version: 1.8.6
 Authors@R: 
     person(given = "Mihai",
            family = "Constantin",
@@ -23,7 +23,7 @@ BugReports: https://github.com/mihaiconstantin/powerly/issues
 Imports: R6, progress, parallel, splines2, quadprog, osqp, bootnet,
         qgraph, ggplot2, rlang, mvtnorm, patchwork
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Collate: 'Backend.R' 'Basis.R' 'Model.R' 'GgmModel.R' 'Interpolation.R'
         'Spline.R' 'StepThree.R' 'StepTwo.R' 'Statistic.R'
         'PowerStatistic.R' 'StatisticFactory.R' 'ModelFactory.R'
@@ -34,8 +34,8 @@ Collate: 'Backend.R' 'Basis.R' 'Model.R' 'GgmModel.R' 'Interpolation.R'
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2022-04-30 09:16:53 UTC; mihai
+Packaged: 2022-09-09 13:41:09 UTC; mihai
 Author: Mihai Constantin [aut, cre] (<https://orcid.org/0000-0002-6460-0107>)
 Maintainer: Mihai Constantin <mihai@mihaiconstantin.com>
 Repository: CRAN
-Date/Publication: 2022-05-01 15:40:02 UTC
+Date/Publication: 2022-09-09 14:10:01 UTC
