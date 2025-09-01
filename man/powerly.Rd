@@ -26,7 +26,7 @@ powerly(
   tolerance = 50,
   iterations = 10,
   cores = NULL,
-  backend_type = NULL,
+  cluster_type = "psock",
   save_memory = FALSE,
   verbose = TRUE
 )
@@ -95,10 +95,8 @@ degree of freedom is selected based on Leave One Out Cross-Validation. If
 automatically created with all integers between \code{3} and \code{20}.}
 
 \item{solver_type}{A character string representing the type of the quadratic
-solver used for estimating the spline coefficients. Possible values are
-\code{"quadprog"} (the default) and \code{"osqp"}. Currently, the "\code{osqp}" solver does
-not play nicely with \code{R}'s \code{\link[parallel:parallel-package]{parallel::parallel}} package and cannot be used
-when powerly is ran in parallel.}
+solver used for estimating the spline coefficients. Currently only
+\code{"quadprog"} (the default) is supported.}
 
 \item{boots}{A positive integer representing the number of bootstrap runs to
 perform on the matrix of performance measures in order to obtained
@@ -123,21 +121,20 @@ iterations the algorithm is allowed to run. The default is \code{10}.}
 
 \item{cores}{A single positive positive integer representing the number of
 cores to use for running the algorithm in parallel, or \code{NULL}. If \code{NULL} (the
-default) the algorithm will run sequentially.}
+default) or \code{1} the algorithm will run sequentially.}
 
-\item{backend_type}{A character string indicating the type of cluster to
-create for running the algorithm in parallel, or \code{NULL}. Possible values are
-\code{"psock"} and \code{"fork"}. If \code{NULL} the backend is determined based on the
-computer architecture (i.e., \code{fork} for Unix and MacOS and \code{psock} for
-Windows).}
+\item{cluster_type}{A character string indicating the type of cluster to
+create for running the algorithm in parallel. Possible values are \code{"psock"}
+and \code{"fork"}. Note that the \code{"fork"} option is only available on Unix-like
+systems. The default value is \code{"psock"}.}
 
 \item{save_memory}{A logical value indicating whether to save memory by only
 storing the results for the last iteration of the method. The default \code{TRUE}
 indicates that only the last iteration should be saved.}
 
 \item{verbose}{A logical value indicating whether information about the
-status of the algorithm should be printed while running. The default is
-\code{TRUE}.}
+status of the algorithm should be printed while running (e.g., a progress
+bar). The default is \code{TRUE}.}
 }
 \value{
 An \code{\link[R6:R6Class]{R6::R6Class()}} instance of \code{Method} class that contains the results for
@@ -172,7 +169,7 @@ required to obtain a certain value for a performance measure of interest
 }
 \details{
 This function represents the implementation of the method introduced by
-Constantin et al. (2021; see \doi{10.31234/osf.io/j5v7u}) for performing a
+Constantin et al. (2023; see \doi{10.1037/met0000555}) for performing a
 priori sample size analysis in the context of network models. The method
 takes the form of a three-step recursive algorithm designed to find an
 optimal sample size value given a model specification and an outcome measure
@@ -186,7 +183,7 @@ search shrinks below a specified value.
 }
 \section{True Models}{
 
-\strong{Gaussian Graphical Model (GGM)}
+\strong{Gaussian Graphical Model}
 \itemize{
 \item type: cross-sectional
 \item symbol: \code{ggm}
@@ -295,9 +292,9 @@ summary(results)}
 
 }
 \references{
-Constantin, M. A., Schuurman, N. K., & Vermunt, J. (2021). A General Monte
-Carlo Method for Sample Size Analysis in the Context of Network Models.
-PsyArXiv. \doi{10.31234/osf.io/j5v7u}
+Constantin, M. A., Schuurman, N. K., & Vermunt, J. K. (2023). A General
+Monte Carlo Method for Sample Size Analysis in the Context of Network
+Models. \emph{Psychological Methods}. \doi{10.1037/met0000555}
 }
 \seealso{
 \code{\link[=plot.Method]{plot.Method()}}, \code{\link[=summary.Method]{summary.Method()}}, \code{\link[=validate]{validate()}}, \code{\link[=generate_model]{generate_model()}}

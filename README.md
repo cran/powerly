@@ -17,15 +17,15 @@
     <a href="https://www.r-pkg.org/pkg/powerly"><img src="https://cranlogs.r-pkg.org/badges/grand-total/powerly" alt="CRAN RStudio mirror downloads"/></a>
     <a href="https://app.codecov.io/gh/mihaiconstantin/powerly"><img src="https://codecov.io/gh/mihaiconstantin/powerly/branch/main/graph/badge.svg?token=YUCO8ULBCM" alt="Code coverage"/></a>
     <a href="https://github.com/mihaiconstantin/powerly/actions"><img src="https://github.com/mihaiconstantin/powerly/workflows/R-CMD-check/badge.svg" alt="R-CMD-check" /></a>
-    <a href="https://cranchecks.info/pkgs/powerly"><img src="https://cranchecks.info/badges/worst/powerly" alt="CRAN checks"/></a>
+    <a href="https://CRAN.R-project.org/web/checks/check_results_powerly.html"><img src="https://badges.cranchecks.info/worst/powerly.svg" alt="CRAN checks"/></a>
 </p>
 
 ## Description
 
 `powerly` is an `R` package that implements the method by [Constantin et al.
-(2021)](https://psyarxiv.com/j5v7u) for conducting sample size analysis for
-cross-sectional network models. The method implemented is implemented in the
-main function `powerly`()`. The implementation takes the form of a three-step
+(2023)](https://doi.org/10.1037/met0000555) for conducting sample size analysis
+for cross-sectional network models. The method implemented is implemented in the
+main function `powerly()`. The implementation takes the form of a three-step
 recursive algorithm designed to find an optimal sample size value given a model
 specification and an outcome measure of interest. It starts with a Monte Carlo
 simulation step for computing the outcome at various sample sizes. Then, it
@@ -108,7 +108,7 @@ more information, see the documentation `?validate`.
 
 ```r
 # Validate the recommendation obtained during the analysis.
-validation <- validate(results)
+validation <- validate(results, cores = 2)
 ```
 
 To visualize the results, we can use the `plot` function and indicate the step
@@ -173,4 +173,5 @@ plot(validation)
 The code in this repository is licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 To use `powerly` please cite:
-- Constantin, M. A., Schuurman, N. K., & Vermunt, J. (2021). A General Monte Carlo Method for Sample Size Analysis in the Context of Network Models. PsyArXiv. [https://doi.org/10.31234/osf.io/j5v7u](https://doi.org/10.31234/osf.io/j5v7u)
+
+- Constantin, M. A., Schuurman, N. K., & Vermunt, J. K. (2023). A General Monte Carlo Method for Sample Size Analysis in the Context of Network Models. _Psychological Methods_. [https://doi.org/10.1037/met0000555](https://doi.org/10.1037/met0000555)

@@ -3,6 +3,64 @@ All notable changes to this project will be documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this
 project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.10.0
+### Added
+- Add cautionary messages for `powerly` and `validate` to draw attention to
+  picking sensible argument values for the method. Also, notifying the user if
+  the validation procedure did not meet the set targets.
+- Add support for [`parabar`](https://parabar.mihaiconstantin.com) backends with
+  informative progress tracking. Closes
+  [#8](https://github.com/mihaiconstantin/powerly/issues/8).
+- Add `sample` argument to `validate` facade to allow users to perform
+  validation for specific sample sizes if needed.
+
+### Changed
+- Move `S3` methods to separate file for clarity.
+
+### Fixed
+- Update URLs to canonical `CRAN` format.
+
+## 1.9.3
+### Fixed
+- Add `\doi{}` call to `powerly-package.R` documentation. I know what you're
+  thinking...
+
+## 1.9.2
+### Fixed
+- Remove `\doi{}` call from `powerly-package.R` documentation.
+
+## 1.9.1
+### Fixed
+- Fix incorrect `DOI` in `powerly-package.R` documentation.
+
+## 1.9.0
+### Added
+- Add content for website [publications
+  page](https://powerly.dev/publications/).
+
+### Changed
+- Update copyright information in license files.
+- Add published manuscript `DOI` to the package logo.
+- Update citation, references, and documentation mentions to the published
+  manuscript available at
+  [10.1037/met0000555](https://doi.org/10.1037/met0000555).
+- Update `GitHub` action versions for all workflow files. Closes
+  [#37](https://github.com/mihaiconstantin/powerly/issues/37).
+- Add missing link to paper reference in documentation.
+
+### Fixed
+- Update `CITATION` file to use `bibentry`.
+- Purged the evil from the website footer. Long overdue.
+- Fix resulting empty `\link{}` in `.Rd` files.
+- Disable cloning for `BackendTester` class.
+- Make destructor for `Backend` class private in line with `R6` package
+  recommendations (i.e., see `R6` `v2.6.0` changes).
+- Replace URLs for CRAN checks badges. Closes
+  [#35](https://github.com/mihaiconstantin/powerly/issues/35).
+- Fix `docs` workflow error after changing from `yarn` to `pnpm`. For the time
+  being, migrated back to `yarn`. Closes
+  [#39](https://github.com/mihaiconstantin/powerly/issues/39).
+
 ## 1.8.6
 ### Fixed
 - Remove invalid `HTML` syntax from documented functions (i.e., `div` elements
@@ -52,7 +110,7 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## 1.8.0 - 2022-05-02
 ### Added
 - Add more arguments for generating partial correlation matrices (i.e., in line
-  with Yin and Li (2011; see reference below). The new arguments are `positive`
+  with Yin and Li, 2011; see reference below). The new arguments are `positive`
   (i.e., for the proportion of positive edges), `range` (i.e., for the interval
   from which to sample values for the partial correlations), and `constant`
   (i.e., to vary the magnitude of the partial correlations). See Yin and Li
@@ -187,7 +245,7 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - Add preliminary `summary()` support for `Method` and `Validation` objects.
 - Update citation and references to the preprint available at
-  [psyarxiv.com/j5v7u](https://psyarxiv.com/j5v7u).
+  [psyarxiv.com/j5v7u](https://osf.io/preprints/psyarxiv/j5v7u).
 - Add `ggplot` plots and saving support for `StepOne`, `StepTwo`, `StepThree`
   and `Validation` objects.
 
@@ -289,26 +347,3 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Add `run.step.1()` prototype for *Step 1* of the method.
 - Add `run.step.2()` prototype for *Step 2* of the method.
 - Add `run.step.3()` prototype for *Step 3* of the method.
-
----
-
-# Planned changes and ideas to consider
-
-- Add tests for `Validation` class.
-- Option to set seeds for the cluster via `parallel::setclusterSetRNGStream`
-- Mechanism for performing replicable simulations using the method.
-- Mechanism for extending the package with new models, measures and statistics.
-- Tutorial for methodologists on how to extend the package.
-- Tutorial to demonstrate how the internal API of the package can be used.
-- Add *UML* class diagram to give an overview of the structure of the package.
-- Add package website using the `pkgdown` generator.
-- Switch to generating `README.md` file from `README.Rmd` via `knitr`.
-- Bisectional algorithm for choosing an optimal starting range (i.e., not too
-  wide, not too narrow).
-- Switch to accelerated bootstrap CI in `StepThree` for better precision.
-- Reuse Monte Carlo results from previous iterations if they fall within the
-  updated range.
-- Shiny application for running the method.
-- Allow rerunning the validation procedure with a custom sample size.
-    - If multiple custom sample sizes are used during the validation, then
-      switch from the histogram to a violin plot.

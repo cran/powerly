@@ -7,8 +7,9 @@
 validate(
   method,
   replications = 3000,
+  sample = NULL,
   cores = NULL,
-  backend_type = NULL,
+  cluster_type = "psock",
   verbose = TRUE
 )
 }
@@ -21,15 +22,19 @@ Monte Carlo simulations to perform for the recommended sample size. The
 default is \code{1000}. Whenever possible, a value of \code{10000} should be preferred
 for a higher accuracy of the validation results.}
 
-\item{cores}{A single positive positive integer representing the number of
-cores to use for running the validation in parallel, or \code{NULL}. If \code{NULL}
-(the default) the validation will run sequentially.}
+\item{sample}{A single positive integer representing the sample size to
+perform the validation for. If \code{NULL} (the default) the validation will be
+run for the sample size recommendation contained in the \code{method} argument
+(i.e., the output of the \code{\link[=powerly]{powerly()}} function). Defaults to \code{NULL}.}
 
-\item{backend_type}{A character string indicating the type of cluster to
-create for running the validation in parallel, or \code{NULL}. Possible values are
-\code{"psock"} and \code{"fork"}. If \code{NULL} the backend is determined based on the
-computer architecture (i.e., \code{fork} for Unix and MacOS and \code{psock} for
-Windows).}
+\item{cores}{A single positive positive integer representing the number of
+cores to use for running the algorithm in parallel, or \code{NULL}. If \code{NULL} (the
+default) or \code{1} the algorithm will run sequentially.}
+
+\item{cluster_type}{A character string indicating the type of cluster to
+create for running the algorithm in parallel. Possible values are \code{"psock"}
+and \code{"fork"}. Note that the \code{"fork"} option is only available on Unix-like
+systems. The default value is \code{"psock"}.}
 
 \item{verbose}{A logical value indicating whether information about the
 status of the validation should be printed while running. The default is
@@ -59,8 +64,12 @@ This function can be used to validate the recommendation obtained from a
 sample size analysis.
 }
 \details{
-The sample sizes used during the validation procedure is automatically extracted
-from the \code{method} argument.
+The sample sizes used during the validation procedure is automatically
+extracted from the \code{method} argument. User may also choose to provide a
+specific sample size for the validation via the \code{sample} argument. In this
+case, the validation will be run for the provided sample size instead.
+Providing a specific \code{sample} value is akin to manually searching for an
+optimal value.
 }
 \examples{
 \donttest{# Perform a sample size analysis.
